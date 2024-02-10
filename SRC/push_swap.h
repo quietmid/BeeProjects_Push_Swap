@@ -26,4 +26,16 @@ typedef struct s_stack
 	struct s_stack	*prev; //not sure if we need this yet
 }		t_stack;
 
+// Error Handling
+
+// Stack initiation
+
+// Utils
+
+// Commands Operation
+
+// Algorithms
+
+
+
 #endif
