@@ -15,12 +15,15 @@
 
 #include "../libft/libft.h" 
 
-typedef struct s_list
+#include <stdbool.h>
+#include <limits.h>
+
+typedef struct s_stack
 {
 	int				values;
 	int				index;
-	struct s_list	*next;
-	struct s_list	*prev; //not sure if we need this yet
-}		t_list;
+	struct s_stack	*next;
+	struct s_stack	*prev; //not sure if we need this yet
+}		t_stack;
 
 #endif
