@@ -6,7 +6,7 @@
 #    By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:03:39 by jlu               #+#    #+#              #
-#    Updated: 2024/02/06 17:10:35 by jlu              ###   ########.fr        #
+#    Updated: 2024/02/12 17:05:28 by jlu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ LIBFT = ./libft/libft.a
 
 SRC = ./SRC/instruction.c \
 	  ./SRC/push_swap.c \
+	  ./SRC/errors_utils.c \
+
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -55,7 +57,7 @@ $(OBJECTS_DIR)/%.o: ./SRC/%.c
 clean:
 		@$(MAKE) clean -C ./libft
 		@rm -rf $(OBJECTS_DIR)/*.o
-		@if [ -f "$(OBJECTS_DIR)" ]; then rmdir -p $(OBJECTS_DIR); fi
+		@rm -rf obj
 		@echo "$(WHITE) $(OBJECTS_DIR) $(GREEN) REMOVED"
 
 fclean: clean
