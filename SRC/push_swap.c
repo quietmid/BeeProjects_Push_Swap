@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/12 18:24:21 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/13 18:21:36 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ static void	stack_node(t_stack **stack, int n)
 	}
 	else // if the stack is not empty then existing nodes are in the linked list
 	{
-		last_node = find_last(*stack); // find the last node
-		last_node->next = node; //Append the new node
-		node->prev = last_node; // update the new node's info on its prev node
+		last_node = find_last(*stack); // find the last node which is the previous processed node
+		last_node->next = node; //Append the new node the current value that's passed through
+		node->prev = last_node; // update the new node's info on its prev node 
 	}
+	//printf("stack node: %i\n", node->value);
 }
 
-void init_stack_a(t_stack *a, char **argv)
+void init_stack_a(t_stack **a, char **argv)
 {
 	long	n;
 	int		i;
@@ -67,11 +68,13 @@ void init_stack_a(t_stack *a, char **argv)
 	while (argv[i] != '\0')
 	{
 		n = ft_atol(argv[i]);
+		printf("init stack: %ld\n", n);
 		if (n > INT_MAX || n < INT_MIN)
 			free_errors(a);
-		if (check_dup(&a, (int)n))
+		if (check_dup(*a, (int)n) == 1)
 			free_errors(a);
-		stack_node(a, (int)(n))
+		stack_node(a, (int)(n));
+		i++;
 	}
 }
 
@@ -80,7 +83,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	int	i;
 
 	a = NULL;
 	b = NULL;
@@ -92,14 +94,26 @@ int	main(int argc, char **argv)
 	// if the argc count is 2 then we split them in arrays of str
 	else if (argc == 2)
 		argv = ft_split(argv[1], ' ');
-	// convert all array into long int and store them in stack a
-	//init_stack_a(a, argv);
-
+	int i;
 	i = 0;
 	while (argv[i] != '\0')
 	{
-		printf("%s\n", argv[i]);
+		printf("split: %s\n", argv[i]);
 		i++;
 	}
+	// convert all array into long int and store them in stack a
+	init_stack_a(&a, argv);
+	//while (a->next)
+	//{
+	//	printf("First: %i\n", a->value);
+	//	a = a->next;
+	//}
+	swap(&a);
+	while (a->next)
+	{
+		printf("Swapped: %i\n", a->value);
+		a = a->next;
+	}
+	printf("Swapped: %i\n", a->value);
 	return (0);
 }

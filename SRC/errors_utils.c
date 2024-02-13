@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:49:46 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/12 18:18:35 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/13 16:34:59 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_dup(t_stack *a, int n)
 		return (0);
 	while (a)
 	{
-		if (a ->value == n)
+		if (a->value == n)
 			return (1);
 		a = a->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:33:30 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/12 18:22:33 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/13 18:10:42 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 
 #include <stdbool.h>
 #include <limits.h>
+// need to delete before
+#include <stdio.h>
 
 typedef struct s_stack
 {
 	int				value;
 	int				index;
 	struct s_stack	*next;
-	struct s_stack	*prev; //not sure if we need this yet
+	struct s_stack	*prev;
 }		t_stack;
 
 // Error Handling
@@ -33,7 +35,7 @@ void 	free_errors(t_stack **a);
 void	error_msg_params(char *msg);
 
 // Stack initiation
-
+void	swap(t_stack **head);
 // Utils
 t_stack	*find_last(t_stack *stack);
 // Commands Operation

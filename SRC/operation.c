@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruction.c                                      :+:      :+:    :+:   */
+/*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:49:12 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/08 17:01:54 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/13 18:13:47 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,23 @@ rrr (rra + rrb)
 pa (push a): Top number in B goes to the top of A
 pb (push b): Top number in A goes to the top of B
 */
+
+#include "push_swap.h"
+void	swap(t_stack **head) // swap the top 2 nodes
+{
+	t_stack *temp;
+	
+	if (!*head || !(*head)->next) // adding the () making sure that it checks head->next instead of just the head
+		return ;
+	temp = *head;
+	printf("temp head: %i\n", temp->value);
+	*head = (*head)->next;
+	printf("head: %i\n", (*head)->value);
+	temp->next = (*head)->next;
+	printf("temp next: %i\n", temp->next->value);
+	printf("head next: %i\n", (*head)->next->value);
+	//(*head)->next->prev = *head;
+	(*head)->next = temp;
+	printf("head next: %i\n", (*head)->next->value);
+	(*head)->prev = NULL;
+}

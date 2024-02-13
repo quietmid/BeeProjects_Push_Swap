@@ -6,7 +6,7 @@
 #    By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:03:39 by jlu               #+#    #+#              #
-#    Updated: 2024/02/12 17:05:28 by jlu              ###   ########.fr        #
+#    Updated: 2024/02/13 16:22:23 by jlu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ NAME = push_swap
 
 LIBFT = ./libft/libft.a
 
-SRC = ./SRC/instruction.c \
+SRC = ./SRC/operation.c \
 	  ./SRC/push_swap.c \
 	  ./SRC/errors_utils.c \
-
+	  ./SRC/stack_utils.c \
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
