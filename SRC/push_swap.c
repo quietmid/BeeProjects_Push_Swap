@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/14 18:00:01 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/14 18:23:52 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,13 @@ int	main(int argc, char **argv)
 	}
 	printf("stack: %i\n", b->value);
 	//swap(&a);
-	rotate(&a);
+	//rotate(&a);
+	rev_rotate(&a);
 	while (a->next)
 	{
-		printf("swapped: %i\n", a->value);
+		printf("moved: %i\n", a->value);
 		a = a->next;
 	}
-	printf("swapped: %i\n", a->value);
+	printf("moved: %i\n", a->value);
 	return (0);
 }

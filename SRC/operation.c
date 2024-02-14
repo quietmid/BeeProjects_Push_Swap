@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:49:12 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/14 18:00:00 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/14 18:24:16 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,23 @@ void	rotate(t_stack **stack)
 
 	//printf("sec node: %i\n", last_node->next->prev->value);
 	//last_node->next->next = NULL;
+}
+
+void	rev_rotate(t_stack **stack)
+{
+	t_stack *last_node;
+	
+	if(!*stack || !(*stack)->next)
+		return ;
+	//printf("stack head: %i\n", (*stack)->value);
+	last_node = find_last(*stack);
+	//printf("last node: %i\n", last_node->value);
+	//printf("last node prev: %i\n", last_node->prev->value);
+	last_node->prev->next = NULL;
+	last_node->next = *stack;
+	last_node->prev = NULL;
+	//printf("new head: %i\n", (*stack)->value);
+	*stack = last_node;
+	//printf("head next: %i\n", (*stack)->next->value);
+	last_node->next->prev = last_node;
 }
