@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:49:46 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/13 16:34:59 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/14 14:10:32 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	free_stack(t_stack **stack)
 void	free_errors(t_stack **a)
 {
 	free_stack(a);
-	ft_putendl_fd("Error", 1);
 }
 
-void	error_msg_params(char *msg)
+void	error_msg_params(char *msg, t_stack **a)
 {
+	free_errors(a);
 	ft_putstr_fd("Error\n", 1);
 	ft_putendl_fd(msg, 1);
 	exit (1);
