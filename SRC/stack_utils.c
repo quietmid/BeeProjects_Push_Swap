@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:21:23 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/14 17:22:19 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/16 17:09:08 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_stack	*find_last(t_stack *stack)
 		stack = stack->next;
 	return (stack);
 }
+
 
 int	stack_sorted(t_stack *stack)
 {
@@ -36,3 +37,4 @@ int	stack_sorted(t_stack *stack)
 	}
 	return (1);
 }
+

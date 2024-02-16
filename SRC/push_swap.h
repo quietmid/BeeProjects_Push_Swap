@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:33:30 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/14 18:10:17 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/16 17:09:29 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ void	swap(t_stack **head);
 int	stack_sorted(t_stack *stack);
 // Utils
 t_stack	*find_last(t_stack *stack);
+
 // Commands Operation
 void	rev_rotate(t_stack **stack);
 void	rotate(t_stack **stack);
 void	swap(t_stack **head);
 void	push(t_stack **a, t_stack **b);
 // Algorithms
-
+void	three_sort(t_stack **stack);
 
 
 #endif

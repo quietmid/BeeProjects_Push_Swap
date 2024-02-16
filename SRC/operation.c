@@ -65,9 +65,6 @@ void	rotate(t_stack **stack)
 	//printf("last node next: %i\n", last_node->next->value);
 	//printf("last node: %i\n", last_node->value);
 	//printf("sec node: %i\n", (*stack)->value);
-
-	//printf("sec node: %i\n", last_node->next->prev->value);
-	//last_node->next->next = NULL;
 }
 
 void	rev_rotate(t_stack **stack)
@@ -96,9 +93,9 @@ void	push(t_stack **a, t_stack **b)
 	if (!*a)
 		return ;
 	temp = *a;
-	printf("head: %i\n", (*a)->value);
+	// printf("head: %i\n", (*a)->value);
 	*a = (*a)->next;
-	printf("head: %i\n", (*a)->value);
+	// printf("head: %i\n", (*a)->value);
 	if (!*b)
 	{
 		*b = temp;
@@ -109,6 +106,6 @@ void	push(t_stack **a, t_stack **b)
 		temp->next = *b;
 		*b = temp;
 	}
-	printf("b stack: %i\n", (*b)->value);
+	// printf("b stack: %i\n", (*b)->value);
 	(*a)->prev = NULL;
 }

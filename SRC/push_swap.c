@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/14 18:23:52 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/16 17:10:32 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ void init_stack_a(t_stack **a, char **argv)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	t_stack	*b;
+	// t_stack	*b;
 
 	a = NULL;
-	b = NULL;
+	// b = NULL;
 	if (argc < 2 || !argv[1][0])
 	{	
 		printf("no string"); // error check temp
@@ -107,6 +107,7 @@ int	main(int argc, char **argv)
 		printf("it is not in order\n");
 	else
 		printf("it is in order\n");
+	three_sort(&a);
 	//while (a->next)
 	//{
 	//	printf("First: %i\n", a->value);
@@ -119,15 +120,16 @@ int	main(int argc, char **argv)
 	// 	b = b->next;
 	// }
 	// printf("stack: %i\n", b->value);
-	// while (a->next)
-	// {
-	// 	printf("A: %i\n", a->value);
-	// 	a = a->next;
-	// }
-	// printf("A: %i\n", a->value);
+
+	while (a->next)
+	{
+		printf("A: %i\n", a->value);
+		a = a->next;
+	}
+	printf("A: %i\n", a->value);
 	// while (b->next)
 	// {
-	// 	printf("B Stack: %i\n", b->value);
+	// 	printf("B: %i\n", b->value);
 	// 	b = b->next;
 	// }
 	// printf("B: %i\n", b->value);
