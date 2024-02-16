@@ -65,7 +65,7 @@ void init_stack_a(t_stack **a, char **argv)
 	int		i;
 
 	i = 0;
-	while (argv[i] != '\0')
+	while (argv[i] != (void *)0)
 	{
 		n = ft_atol(argv[i]);
 		//printf("init stack: %ld\n", n);
@@ -112,21 +112,24 @@ int	main(int argc, char **argv)
 	//	printf("First: %i\n", a->value);
 	//	a = a->next;
 	//}
-	b = a;
-	while (b->next)
-	{
-		printf("Stack: %i\n", b->value);
-		b = b->next;
-	}
-	printf("stack: %i\n", b->value);
-	//swap(&a);
-	//rotate(&a);
-	rev_rotate(&a);
-	while (a->next)
-	{
-		printf("moved: %i\n", a->value);
-		a = a->next;
-	}
-	printf("moved: %i\n", a->value);
+	// b = a;
+	// while (b->next)
+	// {
+	// 	printf("Stack: %i\n", b->value);
+	// 	b = b->next;
+	// }
+	// printf("stack: %i\n", b->value);
+	// while (a->next)
+	// {
+	// 	printf("A: %i\n", a->value);
+	// 	a = a->next;
+	// }
+	// printf("A: %i\n", a->value);
+	// while (b->next)
+	// {
+	// 	printf("B Stack: %i\n", b->value);
+	// 	b = b->next;
+	// }
+	// printf("B: %i\n", b->value);
 	return (0);
 }

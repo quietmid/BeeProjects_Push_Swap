@@ -88,3 +88,27 @@ void	rev_rotate(t_stack **stack)
 	//printf("head next: %i\n", (*stack)->next->value);
 	last_node->next->prev = last_node;
 }
+
+void	push(t_stack **a, t_stack **b)
+{
+	t_stack *temp;
+
+	if (!*a)
+		return ;
+	temp = *a;
+	printf("head: %i\n", (*a)->value);
+	*a = (*a)->next;
+	printf("head: %i\n", (*a)->value);
+	if (!*b)
+	{
+		*b = temp;
+		(*b)->next = NULL;
+	}
+	else
+	{
+		temp->next = *b;
+		*b = temp;
+	}
+	printf("b stack: %i\n", (*b)->value);
+	(*a)->prev = NULL;
+}

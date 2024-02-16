@@ -43,6 +43,7 @@ t_stack	*find_last(t_stack *stack);
 void	rev_rotate(t_stack **stack);
 void	rotate(t_stack **stack);
 void	swap(t_stack **head);
+void	push(t_stack **a, t_stack **b);
 // Algorithms
 
 
