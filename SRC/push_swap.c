@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/16 17:10:32 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/17 12:35:39 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,22 +92,28 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	// if the argc count is 2 then we split them in arrays of str
-	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	//int i;
-	//i = 0;
-	//while (argv[i] != '\0')
-	//{
-	//	printf("split: %s\n", argv[i]);
-	//	i++;
-	//}
 	// convert all array into long int and store them in stack a
-	init_stack_a(&a, argv + 1);
-	if (stack_sorted(a) != 1)
-		printf("it is not in order\n");
+	else if (argc == 2)
+	{
+		argv = ft_split(argv[1], ' ');
+		init_stack_a(&a, argv);
+	}
 	else
-		printf("it is in order\n");
-	three_sort(&a);
+		init_stack_a(&a, argv + 1);
+	int i;
+	i = 0;
+	while (argv[i] != (void *)0)
+	{
+		printf("split: %s\n", argv[i]);
+		i++;
+	}
+	int len;
+	len = stack_len(a);
+	printf("%i\n", len);
+	// if (stack_sorted(a) != 1)
+	// {
+	// }
+	// three_sort(&a);
 	//while (a->next)
 	//{
 	//	printf("First: %i\n", a->value);

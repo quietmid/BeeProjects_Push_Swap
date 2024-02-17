@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:21:23 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/16 17:09:08 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/17 12:27:38 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,17 @@ int	stack_sorted(t_stack *stack)
 	return (1);
 }
 
+int	stack_len(t_stack *stack)
+{
+	int	count;
+
+	if (!stack)
+		return (0);
+	count = 0;
+	while (stack)
+	{
+		++count;
+		stack = stack->next;
+	}
+	return (count);
+}
