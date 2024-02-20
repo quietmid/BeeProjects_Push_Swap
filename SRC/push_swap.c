@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/17 12:35:39 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/20 21:34:50 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,15 @@ void init_stack_a(t_stack **a, char **argv)
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	// t_stack	*b;
+	 t_stack	*b;
 
 	a = NULL;
-	// b = NULL;
+	b = NULL;
 	if (argc < 2 || !argv[1][0])
 	{	
-		printf("no string"); // error check temp
+		error_msg_params("nothing to sort", &a);
 		return (1);
 	}
-	// if the argc count is 2 then we split them in arrays of str
-	// convert all array into long int and store them in stack a
 	else if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
@@ -101,19 +99,37 @@ int	main(int argc, char **argv)
 	else
 		init_stack_a(&a, argv + 1);
 	int i;
-	i = 0;
+	i = 1;
 	while (argv[i] != (void *)0)
 	{
 		printf("split: %s\n", argv[i]);
 		i++;
 	}
-	int len;
-	len = stack_len(a);
-	printf("%i\n", len);
-	// if (stack_sorted(a) != 1)
-	// {
-	// }
-	// three_sort(&a);
+	if (stack_sorted(a) != 1)
+	{
+		if (stack_len(a) == 2)
+			swap(&a);
+		else if (stack_len(a) == 3)
+			three_sort(&a);
+		else
+			sort_stacks(&a, &b);		
+	}
+	while (a->next)
+	{
+		printf("First: %i\n", a->value);
+		a = a->next;
+	}
+	printf("First: %i\n", a->value);
+	while (b->next)
+	 {
+	 	printf("Stack B: %i\n", b->value);
+	 	b = b->next;
+	 }
+	 printf("stack B: %i\n", b->value);
+	return (0);
+}
+
+// printf check
 	//while (a->next)
 	//{
 	//	printf("First: %i\n", a->value);
@@ -126,18 +142,10 @@ int	main(int argc, char **argv)
 	// 	b = b->next;
 	// }
 	// printf("stack: %i\n", b->value);
-
-	while (a->next)
-	{
-		printf("A: %i\n", a->value);
-		a = a->next;
-	}
-	printf("A: %i\n", a->value);
-	// while (b->next)
-	// {
-	// 	printf("B: %i\n", b->value);
-	// 	b = b->next;
-	// }
-	// printf("B: %i\n", b->value);
-	return (0);
-}
+	//int i;
+	//i = 1;
+	//while (argv[i] != (void *)0)
+	//{
+	//	printf("split: %s\n", argv[i]);
+	//	i++;
+	//}
