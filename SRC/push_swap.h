@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:33:30 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/20 21:52:29 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/21 16:50:21 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,29 @@ void	error_msg_params(char *msg, t_stack **a);
 void	swap(t_stack **head);
 int		stack_sorted(t_stack *stack);
 void	current_index(t_stack *stack);
-t_stack	*find_max(t_stack *stack);
-t_stack	*find_min(t_stack *stack);
 void 	prep_nodes_a(t_stack *a, t_stack *b);
+void	set_target_a(t_stack *a, t_stack *b);
 
 // Utils
 t_stack	*find_last(t_stack *stack);
 int		stack_len(t_stack *stack);
+void	move_min_top(t_stack **a);
+t_stack	*find_max(t_stack *stack);
+t_stack	*find_min(t_stack *stack);
+t_stack	*set_cheapest(t_stack *stack);
+void	find_cost(t_stack *a, t_stack *b);
 
 // Commands Operation
 void	rev_rotate(t_stack **stack);
 void	rotate(t_stack **stack);
 void	swap(t_stack **head);
 void	push(t_stack **a, t_stack **b);
+void	rev_rotate_both(t_stack **a, t_stack **b);
+void	rotate_both(t_stack **a, t_stack **b);
+void	swap_both(t_stack **a, t_stack **b);
+void	mv_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_node);
+void	mv_rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_node);
+
 // Algorithms
 void	three_sort(t_stack **stack);
 void	sort_stacks(t_stack **a, t_stack **b);

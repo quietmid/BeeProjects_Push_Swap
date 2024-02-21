@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 18:21:23 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/20 21:36:45 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/21 10:50:44 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,15 @@ t_stack	*find_min(t_stack *stack)
 		stack = stack->next;
 	}
 	return (min_node);
+}
+
+void	move_min_top(t_stack **a)
+{
+	while ((*a)->value != find_min(*a)->value)
+	{
+		if (find_min(*a)->above_med == true)
+			rotate(a);
+		else
+			rev_rotate(a);
+	}
 }

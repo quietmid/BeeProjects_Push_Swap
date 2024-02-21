@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/20 21:34:50 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/21 16:58:33 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ static long	ft_atol(const char *s)
 			sign *= -1;
 		s++;
 	}
-	while (ft_isdigit(*s))
+	if (ft_isdigit(*s) == 0)
+	{
+		ft_putendl_fd("not a digit, bruh!", 1);
+		exit (1);
+	}
+	while (ft_isdigit(*s) == 1)
 		result = result * 10 + (*s++ - '0');
 	return (result * sign);
 }
@@ -78,6 +83,11 @@ void init_stack_a(t_stack **a, char **argv)
 	}
 }
 
+void	prep_for_push(t_stack **stack, t_stack, *top_node, )
+{
+	
+}
+
 #include "stdio.h"
 int	main(int argc, char **argv)
 {
@@ -105,27 +115,27 @@ int	main(int argc, char **argv)
 		printf("split: %s\n", argv[i]);
 		i++;
 	}
-	if (stack_sorted(a) != 1)
-	{
-		if (stack_len(a) == 2)
-			swap(&a);
-		else if (stack_len(a) == 3)
-			three_sort(&a);
-		else
-			sort_stacks(&a, &b);		
-	}
+	//if (stack_sorted(a) != 1)
+	//{
+	//	if (stack_len(a) == 2)
+	//		swap(&a);
+	//	else if (stack_len(a) == 3)
+	//		three_sort(&a);
+	//	else
+	//		sort_stacks(&a, &b);		
+	//}
 	while (a->next)
 	{
 		printf("First: %i\n", a->value);
 		a = a->next;
 	}
 	printf("First: %i\n", a->value);
-	while (b->next)
-	 {
-	 	printf("Stack B: %i\n", b->value);
-	 	b = b->next;
-	 }
-	 printf("stack B: %i\n", b->value);
+	//while (b->next)
+	// {
+	// 	printf("Stack B: %i\n", b->value);
+	// 	b = b->next;
+	// }
+	// printf("stack B: %i\n", b->value);
 	return (0);
 }
 

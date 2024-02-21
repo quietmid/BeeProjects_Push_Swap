@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:41:20 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/17 12:05:34 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/21 11:11:29 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	three_sort(t_stack **stack)
 	t_stack *big_node;
 
 	big_node = find_biggest(*stack);
-	printf("biggest node: %i\n", big_node->value);
 	if (*stack == big_node)
 		rotate(stack);
 	else if ((*stack)->next == big_node)
 		rev_rotate(stack);
 	if ((*stack)->value > (*stack)->next->value)
 		swap(stack);
-	printf("three sorted\n");
 }

@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/20 21:52:35 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/21 16:55:12 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,27 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		prep_nodes_a(*a, *b);
-		move_b_to_a(a, b); //need to write this function
+		move_a_to_b(a, b); //need to write this function
 	}
 	three_sort(a);
+	//while (*b)
+	//{
+	//	prep_nodes_b(*a, *b); //need to write this function
+	//	move_b_to_a(a, b); //need to write this function
+	//}
+	current_index(*a);
+	move_min_top(a);
+}
+void	move_a_to_b(t_stack **a, t_stack **b)
+{
+	t_stack	*cheapest;
+
+	cheapest = set_cheapest(*a);
+	if (cheapest->above_med && cheapest->target_node->above_med)
+		mv_rotate_both(a, b, cheapest);
+	else if (!(cheapest->above_med) && !(cheapest->target_node->above_med))
+		mv_rev_rotate_both(a, b, cheapest);
+	
 }
 
 void	prep_nodes_a(t_stack *a, t_stack *b)
@@ -61,8 +79,10 @@ void	current_index(t_stack *stack)
 		i++;
 	}
 }
-
-void	set_cheapest(t_stack *stack)
+/*
+	this find the node with the cheapest push_cost and set cheapest to true
+*/
+t_stack	*set_cheapest(t_stack *stack)
 {
 	long	cheap;
 	t_stack	*cheap_node;

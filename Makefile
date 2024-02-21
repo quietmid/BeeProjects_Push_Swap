@@ -6,7 +6,7 @@
 #    By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:03:39 by jlu               #+#    #+#              #
-#    Updated: 2024/02/20 19:44:36 by jlu              ###   ########.fr        #
+#    Updated: 2024/02/21 17:44:50 by jlu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,14 @@ NAME = push_swap
 
 LIBFT = ./libft/libft.a
 
-SRC = ./SRC/operation.c \
-	  ./SRC/push_swap.c \
+SRC = ./SRC/push_swap.c \
 	  ./SRC/errors_utils.c \
 	  ./SRC/stack_utils.c \
+ 	  ./SRC/push_operation.c \
+	  ./SRC/swap_operation.c \
+	  ./SRC/rotate_operation.c \
+	  ./SRC/rev_rotate_operation.c \
+	  ./SRC/operations.c \
 	  ./SRC/tiny_sort.c \
 	  ./SRC/big_sort.c \
 
