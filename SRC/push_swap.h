@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:33:30 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/21 16:50:21 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/23 16:26:09 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,12 @@ void	swap(t_stack **head);
 int		stack_sorted(t_stack *stack);
 void	current_index(t_stack *stack);
 void 	prep_nodes_a(t_stack *a, t_stack *b);
+void	prep_nodes_b(t_stack *a, t_stack *b);
 void	set_target_a(t_stack *a, t_stack *b);
+void	set_target_b(t_stack *a, t_stack *b);
+void	move_a_to_b(t_stack **a, t_stack **b);
+void	move_b_to_a(t_stack **a, t_stack **b);
+void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name);
 
 // Utils
 t_stack	*find_last(t_stack *stack);
@@ -51,17 +56,26 @@ int		stack_len(t_stack *stack);
 void	move_min_top(t_stack **a);
 t_stack	*find_max(t_stack *stack);
 t_stack	*find_min(t_stack *stack);
-t_stack	*set_cheapest(t_stack *stack);
+void	set_cheapest(t_stack *stack);
 void	find_cost(t_stack *a, t_stack *b);
+t_stack *get_cheapest(t_stack *stack);
 
 // Commands Operation
-void	rev_rotate(t_stack **stack);
-void	rotate(t_stack **stack);
 void	swap(t_stack **head);
+void	sa(t_stack **a, bool checker);
+void	sb(t_stack **b, bool checker);
+void	ss(t_stack **a, t_stack **b, bool checker);
+void	rotate(t_stack **stack);
+void	ra(t_stack **a, bool checker);
+void	rb(t_stack **b, bool checker);
+void	rr(t_stack **a, t_stack **b, bool checker);
+void	rev_rotate(t_stack **stack);
+void	rra(t_stack **a, bool checker);
+void	rrb(t_stack **b, bool checker);
+void	rrr(t_stack **a, t_stack **b, bool checker);
 void	push(t_stack **a, t_stack **b);
-void	rev_rotate_both(t_stack **a, t_stack **b);
-void	rotate_both(t_stack **a, t_stack **b);
-void	swap_both(t_stack **a, t_stack **b);
+void	pb(t_stack **b, t_stack **a, bool checker);
+void	pa(t_stack **a, t_stack **b, bool checker);
 void	mv_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_node);
 void	mv_rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_node);
 

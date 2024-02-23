@@ -6,7 +6,7 @@
 #    By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:03:39 by jlu               #+#    #+#              #
-#    Updated: 2024/02/21 17:44:50 by jlu              ###   ########.fr        #
+#    Updated: 2024/02/23 16:26:30 by jlu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC = ./SRC/push_swap.c \
 	  ./SRC/operations.c \
 	  ./SRC/tiny_sort.c \
 	  ./SRC/big_sort.c \
+	  ./SRC/prep_b.c \
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror

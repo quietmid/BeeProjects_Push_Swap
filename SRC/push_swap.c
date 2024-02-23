@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/21 16:58:33 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/23 16:29:05 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,47 @@ void init_stack_a(t_stack **a, char **argv)
 	}
 }
 
-void	prep_for_push(t_stack **stack, t_stack, *top_node, )
+t_stack	*get_cheapest(t_stack *stack)
 {
-	
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
+/*
+	moving the required node to the top preparing it to be pushed. Depending where the target/top node is, we rotate or rev_rotate
+*/
+void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
+{
+	while (*stack != top_node)
+	{
+		if (stack_name == 'a')
+		{
+			if (top_node->above_med)
+				ra(stack, false);
+			else
+				rra(stack, false);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_med)
+				rb(stack, false);
+			else
+				rrb(stack, false);
+		}
+	}
 }
 
 #include "stdio.h"
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
-	 t_stack	*b;
+	t_stack	*b;
 
 	a = NULL;
 	b = NULL;
@@ -107,7 +138,9 @@ int	main(int argc, char **argv)
 		init_stack_a(&a, argv);
 	}
 	else
+	{
 		init_stack_a(&a, argv + 1);
+	}
 	int i;
 	i = 1;
 	while (argv[i] != (void *)0)
@@ -118,24 +151,24 @@ int	main(int argc, char **argv)
 	//if (stack_sorted(a) != 1)
 	//{
 	//	if (stack_len(a) == 2)
-	//		swap(&a);
+	//		sa(&a, false);
 	//	else if (stack_len(a) == 3)
 	//		three_sort(&a);
 	//	else
-	//		sort_stacks(&a, &b);		
+	//		sort_stacks(&a, &b);	
 	//}
 	while (a->next)
 	{
-		printf("First: %i\n", a->value);
+		printf("a stack: %i\n", a->value);
 		a = a->next;
 	}
-	printf("First: %i\n", a->value);
-	//while (b->next)
-	// {
-	// 	printf("Stack B: %i\n", b->value);
-	// 	b = b->next;
-	// }
-	// printf("stack B: %i\n", b->value);
+	printf("a stack: %i\n", a->value);
+	while (b->next)
+	{
+	 	printf("Stack B: %i\n", b->value);
+	 	b = b->next;
+	}
+	printf("Stack B: %i\n", b->value);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/21 16:55:12 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/23 16:19:40 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ void	sort_stacks(t_stack **a, t_stack **b)
 
 	len_a = stack_len(*a);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		push(a, b);
+		pb(a, b, false);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		push(a, b);
+		pb(a, b, false);
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		prep_nodes_a(*a, *b);
-		move_a_to_b(a, b); //need to write this function
+		move_a_to_b(a, b);
 	}
 	three_sort(a);
-	//while (*b)
-	//{
-	//	prep_nodes_b(*a, *b); //need to write this function
-	//	move_b_to_a(a, b); //need to write this function
-	//}
+	while (*b)
+	{
+		prep_nodes_b(*a, *b);
+		move_b_to_a(a, b);
+	}
 	current_index(*a);
 	move_min_top(a);
 }
@@ -39,12 +39,14 @@ void	move_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest;
 
-	cheapest = set_cheapest(*a);
+	cheapest = get_cheapest(*a);
 	if (cheapest->above_med && cheapest->target_node->above_med)
 		mv_rotate_both(a, b, cheapest);
 	else if (!(cheapest->above_med) && !(cheapest->target_node->above_med))
 		mv_rev_rotate_both(a, b, cheapest);
-	
+	prep_for_push(a, cheapest, 'a');
+	prep_for_push(b, cheapest->target_node, 'b');
+	pb(b, a, false);
 }
 
 void	prep_nodes_a(t_stack *a, t_stack *b)
@@ -82,7 +84,7 @@ void	current_index(t_stack *stack)
 /*
 	this find the node with the cheapest push_cost and set cheapest to true
 */
-t_stack	*set_cheapest(t_stack *stack)
+void	set_cheapest(t_stack *stack)
 {
 	long	cheap;
 	t_stack	*cheap_node;
@@ -124,11 +126,11 @@ void	set_target_a(t_stack *a, t_stack *b)
 			}
 			current_b = current_b->next;
 		}
-	if (best_match_index == LONG_MIN)
-		a->target_node = find_max(b);
-	else
-		a->target_node = target_node;
-	a = a->next;
+		if (best_match_index == LONG_MIN)
+			a->target_node = find_max(b);
+		else
+			a->target_node = target_node;
+		a = a->next;
 	}
 }
 /*
