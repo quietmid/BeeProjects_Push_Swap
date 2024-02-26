@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/23 16:29:05 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/26 16:49:04 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
+	//t_stack *temp;
 
 	a = NULL;
 	b = NULL;
@@ -140,35 +141,38 @@ int	main(int argc, char **argv)
 	else
 	{
 		init_stack_a(&a, argv + 1);
+		printf("stack init\n");
 	}
-	int i;
-	i = 1;
-	while (argv[i] != (void *)0)
-	{
-		printf("split: %s\n", argv[i]);
-		i++;
-	}
-	//if (stack_sorted(a) != 1)
+	//int i;
+	//i = 1;
+	//while (argv[i] != NULL)
 	//{
-	//	if (stack_len(a) == 2)
-	//		sa(&a, false);
-	//	else if (stack_len(a) == 3)
-	//		three_sort(&a);
-	//	else
-	//		sort_stacks(&a, &b);	
+	//	printf("split: %s\n", argv[i]);
+	//	i++;
 	//}
-	while (a->next)
+	if (!stack_sorted(a))
 	{
-		printf("a stack: %i\n", a->value);
-		a = a->next;
+		if (stack_len(a) == 2)
+			sa(&a, false);
+		else if (stack_len(a) == 3)
+			three_sort(&a);
+		else
+			sort_stacks(&a, &b);	
 	}
-	printf("a stack: %i\n", a->value);
-	while (b->next)
-	{
-	 	printf("Stack B: %i\n", b->value);
-	 	b = b->next;
-	}
-	printf("Stack B: %i\n", b->value);
+	// need to check by setting the a stack to temp;
+	//temp = a;
+	//while (temp != NULL && temp->next)
+	//{
+	//	printf("a stack: %i\n", temp->value);
+	//	temp = temp->next;
+	//}
+	//printf("a stack: %i\n", temp->value);
+	//while (b->next)
+	//{
+	// 	printf("Stack B: %i\n", b->value);
+	// 	b = b->next;
+	//}
+	//printf("Stack B: %i\n", b->value);
 	return (0);
 }
 

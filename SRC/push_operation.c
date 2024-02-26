@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:49:12 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/23 14:45:31 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/26 14:50:34 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	push(t_stack **src, t_stack **dest)
 		return ;
 	temp = *src;
 	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	temp->prev = NULL;
 	if (!*dest)
 	{
 		*dest = temp;
@@ -32,6 +35,7 @@ void	push(t_stack **src, t_stack **dest)
 	else
 	{
 		temp->next = *dest;
+		temp->next->prev = temp;
 		*dest = temp;
 	}
 	(*src)->prev = NULL;
