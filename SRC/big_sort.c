@@ -6,35 +6,12 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 12:41:16 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 15:56:23 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_stacks(t_stack **a, t_stack **b)
-{
-	int len_a;
-
-	len_a = stack_len(*a);
-	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(a, b, false);
-	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(a, b, false);
-	while (len_a-- > 3 && !stack_sorted(*a))
-	{
-		prep_nodes_a(*a, *b);
-		move_a_to_b(a, b);
-	}
-	three_sort(a);
-	while (*b)
-	{
-		prep_nodes_b(*a, *b);
-		move_b_to_a(a, b);
-	}
-	current_index(*a);
-	move_min_top(a);
-}
 void	move_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest;
@@ -49,39 +26,6 @@ void	move_a_to_b(t_stack **a, t_stack **b)
 	pb(a, b, false);
 }
 
-void	prep_nodes_a(t_stack *a, t_stack *b)
-{
-	current_index(a);
-	current_index(b);
-	set_target_a(a, b);
-	find_cost(a, b);
-	set_cheapest(a);
-	printf("prep the nodes\n");
-}
-
-/*
-	current_index sets the current index value of each node and set their above_med value to true or false
-*/
-void	current_index(t_stack *stack)
-{
-	int i;
-	int median;
-
-	i = 0;
-	if (!stack)
-		return ;
-	median = stack_len(stack) / 2;
-	while (stack)
-	{
-		stack->index = i;
-		if (i <= median)
-			stack->above_med = true;
-		else
-			stack->above_med = false;
-		stack = stack->next;
-		++i;
-	}
-}
 /*
 	this find the node with the cheapest push_cost and set cheapest to true
 */
@@ -103,6 +47,29 @@ void	set_cheapest(t_stack *stack)
 		stack = stack->next;
 	}
 	cheap_node->cheapest = true;
+}
+
+/*
+	finding the cost to move a to b
+*/
+void	find_cost(t_stack *a, t_stack *b)
+{
+	int len_a;
+	int len_b;
+
+	len_a = stack_len(a);
+	len_b = stack_len(b);
+	while (a)
+	{
+		a->push_cost = a->index;
+		if (a->above_med == false)
+			a->push_cost = len_a - (a->index);
+		if (a->target_node->above_med == true)
+			a->push_cost += a->target_node->index;
+		else
+			a->push_cost += len_b - (a->target_node->index);
+		a = a->next;
+	}
 }
 
 /*
@@ -134,25 +101,61 @@ void	set_target_a(t_stack *a, t_stack *b)
 		a = a->next;
 	}
 }
+
 /*
-	finding the cost to move a to b
+	current_index sets the current index value of each node and set their above_med value to true or false
 */
-void	find_cost(t_stack *a, t_stack *b)
+void	current_index(t_stack *stack)
+{
+	int i;
+	int median;
+
+	i = 0;
+	if (!stack)
+		return ;
+	median = stack_len(stack) / 2;
+	while (stack)
+	{
+		stack->index = i;
+		if (i <= median)
+			stack->above_med = true;
+		else
+			stack->above_med = false;
+		stack = stack->next;
+		++i;
+	}
+}
+/* prep the nodes in stack A to find its target node in B and find out the cost and the cheapest node for pushing*/
+void	prep_nodes_a(t_stack *a, t_stack *b)
+{
+	current_index(a);
+	current_index(b);
+	set_target_a(a, b);
+	find_cost(a, b);
+	set_cheapest(a);
+	//printf("prep the nodes\n");
+}
+
+void	sort_stacks(t_stack **a, t_stack **b)
 {
 	int len_a;
-	int len_b;
 
-	len_a = stack_len(a);
-	len_b = stack_len(b);
-	while (a)
+	len_a = stack_len(*a);
+	if (len_a-- > 3 && !stack_sorted(*a))
+		pb(a, b, false);
+	if (len_a-- > 3 && !stack_sorted(*a))
+		pb(a, b, false);
+	while (len_a-- > 3 && !stack_sorted(*a))
 	{
-		a->push_cost = a->index;
-		if (a->above_med == false)
-			a->push_cost = len_a - (a->index);
-		if (a->target_node->above_med == true)
-			a->push_cost += a->target_node->index;
-		else
-			a->push_cost += len_b - (a->target_node->index);
-		a = a->next;
+		prep_nodes_a(*a, *b);
+		move_a_to_b(a, b);
 	}
+	three_sort(a);
+	while (*b)
+	{
+		prep_nodes_b(*a, *b);
+		move_b_to_a(a, b);
+	}
+	current_index(*a);
+	move_min_top(a);
 }

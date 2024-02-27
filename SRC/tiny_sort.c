@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:41:20 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 14:26:55 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 15:51:34 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,6 @@
 	-if the 2nd node is the biggest, rev rotate (put the bottom to the top, so the biggest (2nd) to the bottom)
 	-now that the biggest is at the bottom, check 1st and 2nd node, swap if needed
 */
-
-//static t_stack *find_biggest(t_stack *stack)
-//{
-//	int	highest;
-//	t_stack *biggest_node;
-
-//	if (!stack)
-//		return (NULL);
-//	highest = INT_MIN;
-//	while (stack)
-//	{
-//		if (stack->value > highest)
-//		{
-//			highest = stack->value;
-//			biggest_node = stack;
-//		}
-//		stack = stack->next;
-//	}
-//	return(biggest_node);
-//}
 
 void	three_sort(t_stack **stack)
 {
@@ -49,5 +29,5 @@ void	three_sort(t_stack **stack)
 			rra(stack, false);
 		if ((*stack)->value > (*stack)->next->value)
 			sa(stack, false);
-		printf("three sorted\n");
+		//printf("three sorted\n");
 }

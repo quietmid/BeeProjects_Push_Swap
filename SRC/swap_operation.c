@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:59:57 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/21 17:04:23 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 15:10:58 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	swap(t_stack **head) // swap the top 2 nodes
 	temp = *head;
 	*head = (*head)->next;
 	temp->next = (*head)->next;
-	//(*head)->next->prev = *head;
+	(*head)->next->prev = *head;
 	(*head)->next = temp;
 	(*head)->prev = NULL;
 }

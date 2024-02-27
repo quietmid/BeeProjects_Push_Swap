@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 14:29:00 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 15:51:42 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ int	main(int argc, char **argv)
 	}
 	t_stack *temp;
 	temp = a;
-	while (temp->next)
+	while (temp != NULL && temp->next)
 	{
 		printf("a stack: %i\n", temp->value);
 		temp = temp->next;

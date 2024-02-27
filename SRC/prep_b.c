@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:03:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/26 17:59:19 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 15:51:50 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	prep_nodes_b(t_stack *a, t_stack *b)
 	current_index(a);
 	current_index(b);
 	set_target_b(a, b);
-	printf("stack b prepped\n");
+	//printf("stack b prepped\n");
 }
 
 void	move_b_to_a(t_stack **a, t_stack **b)
