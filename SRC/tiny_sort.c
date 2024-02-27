@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 16:41:20 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/26 17:04:23 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 14:26:55 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	three_sort(t_stack **stack)
 {
 	t_stack *big_node;
 
-	//if (stack_len(*stack) == 3)
-	//{
 		big_node = find_max(*stack);
 		if (*stack == big_node)
 			ra(stack, false);
@@ -51,6 +49,5 @@ void	three_sort(t_stack **stack)
 			rra(stack, false);
 		if ((*stack)->value > (*stack)->next->value)
 			sa(stack, false);
-		printf("three sorted!\n");
-	//}
+		printf("three sorted\n");
 }

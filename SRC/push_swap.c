@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 12:42:29 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 14:29:00 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,35 @@ static void	stack_node(t_stack **stack, int n)
 	//printf("stack node: %i\n", node->value);
 }
 
-void init_stack_a(t_stack **a, char **argv)
+//void init_stack_a(t_stack **a, char **argv)
+//{
+//	long	n;
+//	int		i;
+
+//	i = 0;
+//	while (argv[i] != (void *)0)
+//	{
+//		n = ft_atol(argv[i]);
+//		//printf("init stack: %ld\n", n);
+//		if (n > INT_MAX || n < INT_MIN)
+//			error_msg_params("It may be too big or too small", a);
+//		if (check_dup(*a, (int)n) == 1)
+//			error_msg_params("how dare you put the same number twice!", a);
+//		stack_node(a, (int)(n));
+//		i++;
+//	}
+//}
+
+void	init_stack_a(t_stack **a, char **argv, int ac)
 {
 	long	n;
 	int		i;
 
 	i = 0;
+	if (ac == 2) 
+		argv = ft_split(argv[1], ' ');
+	else
+		i += 1;
 	while (argv[i] != (void *)0)
 	{
 		n = ft_atol(argv[i]);
@@ -132,13 +155,7 @@ int	main(int argc, char **argv)
 		error_msg_params("nothing to sort", &a);
 		return (1);
 	}
-	else if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		init_stack_a(&a, argv);
-	}
-	else
-		init_stack_a(&a, argv + 1);
+	init_stack_a(&a, argv, argc);
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -148,6 +165,14 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);	
 	}
+	t_stack *temp;
+	temp = a;
+	while (temp->next)
+	{
+		printf("a stack: %i\n", temp->value);
+		temp = temp->next;
+	}
+	printf("a stack: %i\n", temp->value);
 	return (0);
 }
 

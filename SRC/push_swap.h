@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:33:30 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/23 16:26:09 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 14:29:33 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void 	free_errors(t_stack **a);
 void	error_msg_params(char *msg, t_stack **a);
 
 // Stack initiation
-void	swap(t_stack **head);
+void	init_stack_a(t_stack **a, char **argv, int ac);
 int		stack_sorted(t_stack *stack);
 void	current_index(t_stack *stack);
 void 	prep_nodes_a(t_stack *a, t_stack *b);
@@ -82,6 +82,5 @@ void	mv_rev_rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_node);
 // Algorithms
 void	three_sort(t_stack **stack);
 void	sort_stacks(t_stack **a, t_stack **b);
-
 
 #endif
