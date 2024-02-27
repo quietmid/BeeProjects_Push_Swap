@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/26 16:49:04 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 12:42:29 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	//t_stack *temp;
 
 	a = NULL;
 	b = NULL;
@@ -139,17 +138,7 @@ int	main(int argc, char **argv)
 		init_stack_a(&a, argv);
 	}
 	else
-	{
 		init_stack_a(&a, argv + 1);
-		printf("stack init\n");
-	}
-	//int i;
-	//i = 1;
-	//while (argv[i] != NULL)
-	//{
-	//	printf("split: %s\n", argv[i]);
-	//	i++;
-	//}
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -159,7 +148,12 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);	
 	}
-	// need to check by setting the a stack to temp;
+	return (0);
+}
+
+// printf check
+
+	//t_stack *temp;
 	//temp = a;
 	//while (temp != NULL && temp->next)
 	//{
@@ -173,26 +167,3 @@ int	main(int argc, char **argv)
 	// 	b = b->next;
 	//}
 	//printf("Stack B: %i\n", b->value);
-	return (0);
-}
-
-// printf check
-	//while (a->next)
-	//{
-	//	printf("First: %i\n", a->value);
-	//	a = a->next;
-	//}
-	// b = a;
-	// while (b->next)
-	// {
-	// 	printf("Stack: %i\n", b->value);
-	// 	b = b->next;
-	// }
-	// printf("stack: %i\n", b->value);
-	//int i;
-	//i = 1;
-	//while (argv[i] != (void *)0)
-	//{
-	//	printf("split: %s\n", argv[i]);
-	//	i++;
-	//}

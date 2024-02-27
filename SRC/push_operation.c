@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:49:12 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/26 14:50:34 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 11:30:51 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	push(t_stack **src, t_stack **dest)
 		temp->next->prev = temp;
 		*dest = temp;
 	}
-	(*src)->prev = NULL;
 }
 
 void	pb(t_stack **a, t_stack **b, bool checker)

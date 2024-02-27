@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/26 17:09:00 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/27 12:41:16 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,29 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	int len_a;
 
 	len_a = stack_len(*a);
-	printf("0stack len: %i\n", len_a);
 	if (len_a-- > 3 && !stack_sorted(*a))
 		pb(a, b, false);
-	printf("1stack len: %i\n", len_a);
 	if (len_a-- > 3 && !stack_sorted(*a))
 		pb(a, b, false);
-	printf("2stack len: %i\n", len_a);
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
-		printf("top node a: %i\n", (*a)->value);
-		printf("top node b: %i\n", (*b)->value);
 		prep_nodes_a(*a, *b);
 		move_a_to_b(a, b);
-		printf("stack len: %i\n", len_a);
 	}
 	three_sort(a);
-	//while (*b)
-	//{
-	//	prep_nodes_b(*a, *b);
-	//	move_b_to_a(a, b);
-	//}
-	//current_index(*a);
-	//move_min_top(a);
+	while (*b)
+	{
+		prep_nodes_b(*a, *b);
+		move_b_to_a(a, b);
+	}
+	current_index(*a);
+	move_min_top(a);
 }
 void	move_a_to_b(t_stack **a, t_stack **b)
 {
 	t_stack	*cheapest;
 
 	cheapest = get_cheapest(*a);
-	//printf("cheapest: %i\n", cheapest->value);
 	if (cheapest->above_med && cheapest->target_node->above_med)
 		mv_rotate_both(a, b, cheapest);
 	else if (!(cheapest->above_med) && !(cheapest->target_node->above_med))

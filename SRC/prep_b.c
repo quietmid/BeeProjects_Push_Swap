@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:03:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/23 16:24:31 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/26 17:59:19 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	set_target_b(t_stack *a, t_stack *b)
 		current_a = a;
 		while (current_a)
 		{
-			if (current_a->value < b->value && current_a->value < best_match_index)
+			if (current_a->value > b->value && current_a->value < best_match_index)
 			{
 				best_match_index = current_a->value;
 				target_node = current_a;
@@ -46,6 +46,7 @@ void	prep_nodes_b(t_stack *a, t_stack *b)
 	current_index(a);
 	current_index(b);
 	set_target_b(a, b);
+	printf("stack b prepped\n");
 }
 
 void	move_b_to_a(t_stack **a, t_stack **b)
