@@ -6,7 +6,7 @@
 #    By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:03:39 by jlu               #+#    #+#              #
-#    Updated: 2024/02/23 16:26:30 by jlu              ###   ########.fr        #
+#    Updated: 2024/02/28 13:38:23 by jlu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ LIBFT = ./libft/libft.a
 SRC = ./SRC/push_swap.c \
 	  ./SRC/errors_utils.c \
 	  ./SRC/stack_utils.c \
+	  ./SRC/stack_utils2.c \
  	  ./SRC/push_operation.c \
 	  ./SRC/swap_operation.c \
 	  ./SRC/rotate_operation.c \

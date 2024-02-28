@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:03:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 15:51:50 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/28 13:55:28 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ void	set_target_b(t_stack *a, t_stack *b)
 		b = b->next;
 	}
 }
+
+void	move_b_to_a(t_stack **a, t_stack **b)
+{
+	prep_for_push(a, (*b)->target_node, 'a');
+	pa(b, a, false);
+}
 void	prep_nodes_b(t_stack *a, t_stack *b)
 {
 	current_index(a);
 	current_index(b);
 	set_target_b(a, b);
 	//printf("stack b prepped\n");
-}
-
-void	move_b_to_a(t_stack **a, t_stack **b)
-{
-	prep_for_push(a, (*b)->target_node, 'a');
-	pa(b, a, false);
 }

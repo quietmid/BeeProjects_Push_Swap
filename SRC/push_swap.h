@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:33:30 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 14:29:33 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/28 15:52:38 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_stack
 // Error Handling
 int		check_dup(t_stack *a, int n);
 void 	free_stack(t_stack **stack);
-void 	free_errors(t_stack **a);
 void	error_msg_params(char *msg, t_stack **a);
+void	free_all(t_stack **a, t_stack **b);
 
 // Stack initiation
 void	init_stack_a(t_stack **a, char **argv, int ac);

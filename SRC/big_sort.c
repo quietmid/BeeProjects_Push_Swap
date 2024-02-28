@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 15:56:23 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/28 18:51:15 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,52 +24,6 @@ void	move_a_to_b(t_stack **a, t_stack **b)
 	prep_for_push(a, cheapest, 'a');
 	prep_for_push(b, cheapest->target_node, 'b');
 	pb(a, b, false);
-}
-
-/*
-	this find the node with the cheapest push_cost and set cheapest to true
-*/
-void	set_cheapest(t_stack *stack)
-{
-	long	cheap;
-	t_stack	*cheap_node;
-	 
-	if (!stack)
-		return ;
-	cheap = LONG_MAX;
-	while (stack)
-	{
-		if (stack->push_cost < cheap)
-		{
-			cheap = stack->push_cost;
-			cheap_node = stack;
-		}
-		stack = stack->next;
-	}
-	cheap_node->cheapest = true;
-}
-
-/*
-	finding the cost to move a to b
-*/
-void	find_cost(t_stack *a, t_stack *b)
-{
-	int len_a;
-	int len_b;
-
-	len_a = stack_len(a);
-	len_b = stack_len(b);
-	while (a)
-	{
-		a->push_cost = a->index;
-		if (a->above_med == false)
-			a->push_cost = len_a - (a->index);
-		if (a->target_node->above_med == true)
-			a->push_cost += a->target_node->index;
-		else
-			a->push_cost += len_b - (a->target_node->index);
-		a = a->next;
-	}
 }
 
 /*
@@ -156,6 +110,6 @@ void	sort_stacks(t_stack **a, t_stack **b)
 		prep_nodes_b(*a, *b);
 		move_b_to_a(a, b);
 	}
-	current_index(*a);
-	move_min_top(a);
+	//current_index(*a);
+	//move_min_top(a);
 }

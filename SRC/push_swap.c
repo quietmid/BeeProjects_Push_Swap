@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/27 15:51:42 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/28 17:47:46 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,6 @@ static void	stack_node(t_stack **stack, int n)
 	}
 	//printf("stack node: %i\n", node->value);
 }
-
-//void init_stack_a(t_stack **a, char **argv)
-//{
-//	long	n;
-//	int		i;
-
-//	i = 0;
-//	while (argv[i] != (void *)0)
-//	{
-//		n = ft_atol(argv[i]);
-//		//printf("init stack: %ld\n", n);
-//		if (n > INT_MAX || n < INT_MIN)
-//			error_msg_params("It may be too big or too small", a);
-//		if (check_dup(*a, (int)n) == 1)
-//			error_msg_params("how dare you put the same number twice!", a);
-//		stack_node(a, (int)(n));
-//		i++;
-//	}
-//}
 
 void	init_stack_a(t_stack **a, char **argv, int ac)
 {
@@ -165,14 +146,11 @@ int	main(int argc, char **argv)
 		else
 			sort_stacks(&a, &b);	
 	}
-	t_stack *temp;
-	temp = a;
-	while (temp != NULL && temp->next)
+	if (stack_sorted(a) == 1)
 	{
-		printf("a stack: %i\n", temp->value);
-		temp = temp->next;
+		free_all(&a, &b);
+		//printf("it worked!");
 	}
-	printf("a stack: %i\n", temp->value);
 	return (0);
 }
 
