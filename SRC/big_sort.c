@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/28 18:51:15 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/29 19:21:26 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,18 @@ void	current_index(t_stack *stack)
 	i = 0;
 	if (!stack)
 		return ;
-	median = stack_len(stack) / 2;
+	//printf("stack len: %i\n", stack_len(stack));
+	median = (stack_len(stack) / 2);
+	//printf("median: %i\n", median);
 	while (stack)
 	{
 		stack->index = i;
+		//printf("index: %i\n", i);
 		if (i <= median)
 			stack->above_med = true;
 		else
 			stack->above_med = false;
+		//printf("above med: %d\n", stack->above_med);
 		stack = stack->next;
 		++i;
 	}
@@ -90,26 +94,55 @@ void	prep_nodes_a(t_stack *a, t_stack *b)
 	//printf("prep the nodes\n");
 }
 
+static void	print_stacks(t_stack **a, char *stack)
+{
+		t_stack *temp;
+		
+		temp = *a;
+
+		printf("stack %s:", stack);
+		while ((temp != NULL && temp->next))
+		{
+			printf(" %i ", temp->value);
+			temp = temp->next;
+		}
+		printf("\n");
+}
+
 void	sort_stacks(t_stack **a, t_stack **b)
 {
 	int len_a;
 
 	len_a = stack_len(*a);
 	if (len_a-- > 3 && !stack_sorted(*a))
+	{
 		pb(a, b, false);
+		print_stacks(a, "A");
+		print_stacks(b, "B");
+	}
 	if (len_a-- > 3 && !stack_sorted(*a))
+	{
 		pb(a, b, false);
+		print_stacks(a, "A");
+		print_stacks(b, "B");
+	}
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		prep_nodes_a(*a, *b);
 		move_a_to_b(a, b);
+		print_stacks(a, "A");
+		print_stacks(b, "B");
 	}
 	three_sort(a);
 	while (*b)
 	{
 		prep_nodes_b(*a, *b);
 		move_b_to_a(a, b);
+		print_stacks(a, "A");
+		print_stacks(b, "B");
 	}
-	//current_index(*a);
-	//move_min_top(a);
+	current_index(*a);
+	//printf("top node %i\n", (*a)->value);
+	//printf("%i\n", find_min(*a)->value);
+	move_min_top(a);
 }

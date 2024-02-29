@@ -6,7 +6,7 @@
 #    By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:03:39 by jlu               #+#    #+#              #
-#    Updated: 2024/02/28 13:38:23 by jlu              ###   ########.fr        #
+#    Updated: 2024/02/29 18:42:22 by jlu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC = ./SRC/push_swap.c \
 	  ./SRC/prep_b.c \
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 #Color ANSI Code
 BOLD   := \033[1m./SRC/

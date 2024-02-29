@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:37:34 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/28 13:39:27 by jlu              ###   ########.fr       */
+/*   Updated: 2024/02/29 18:07:25 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,30 @@ void	find_cost(t_stack *a, t_stack *b)
 	}
 }
 
+//void	move_min_top(t_stack **a)
+//{
+//	while ((*a)->value != find_min(*a)->value)
+//	{
+//		if (find_min(*a)->above_med == true)
+//			rotate(a);
+//		else
+//			rev_rotate(a);
+//	}
+//}
+
 void	move_min_top(t_stack **a)
 {
-	while ((*a)->value != find_min(*a)->value)
-	{
-		if (find_min(*a)->above_med == true)
-			rotate(a);
-		else
-			rev_rotate(a);
-	}
-}
+	t_stack *min_node;
 
+	min_node = find_min(*a);
+	//printf("min_node above med: %d\n", min_node->above_med);
+	if (min_node->above_med)
+		while (*a != min_node)
+			ra(a, false);
+	else
+		while (*a != min_node)
+			rra(a, false);
+}
 /*
 	this find the node with the cheapest push_cost and set cheapest to true
 */
