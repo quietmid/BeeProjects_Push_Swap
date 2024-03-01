@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/29 17:50:47 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/01 18:44:47 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	init_stack_a(t_stack **a, char **argv, int ac)
 	while (argv[i] != (void *)0)
 	{
 		n = ft_atol(argv[i]);
-		//printf("init stack: %ld\n", n);
 		if (n > INT_MAX || n < INT_MIN)
 			error_msg_params("It may be too big or too small", a);
 		if (check_dup(*a, (int)n) == 1)
@@ -122,6 +121,21 @@ void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
 		}
 	}
 }
+// printf debugger
+static void	print_stacks(t_stack **a, char *stack)
+{
+		t_stack *temp;
+		
+		temp = *a;
+
+		printf("stack %s:", stack);
+		while ((temp != NULL))
+		{
+			printf(" %i ", temp->value);
+			temp = temp->next;
+		}
+		printf("\n");
+}
 
 #include "stdio.h"
 int	main(int argc, char **argv)
@@ -137,6 +151,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_stack_a(&a, argv, argc);
+	//print_stacks(&a, "A");
+	//sa(&a, false);
+	//print_stacks(&a, "A");
 	if (!stack_sorted(a))
 	{
 		if (stack_len(a) == 2)
@@ -148,6 +165,7 @@ int	main(int argc, char **argv)
 	}
 	if (stack_sorted(a) == 1)
 	{
+		print_stacks(&a, "A");
 		free_all(&a, &b);
 		//printf("it worked!");
 	}

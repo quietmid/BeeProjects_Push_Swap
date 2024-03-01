@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/29 19:21:26 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/01 17:54:53 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void	print_stacks(t_stack **a, char *stack)
 		temp = *a;
 
 		printf("stack %s:", stack);
-		while ((temp != NULL && temp->next))
+		while ((temp != NULL))
 		{
 			printf(" %i ", temp->value);
 			temp = temp->next;
@@ -114,6 +114,8 @@ void	sort_stacks(t_stack **a, t_stack **b)
 	int len_a;
 
 	len_a = stack_len(*a);
+	print_stacks(a, "A");
+	print_stacks(b, "B");
 	if (len_a-- > 3 && !stack_sorted(*a))
 	{
 		pb(a, b, false);
