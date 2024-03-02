@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:32:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/03/01 17:54:53 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/02 17:51:36 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,54 +94,54 @@ void	prep_nodes_a(t_stack *a, t_stack *b)
 	//printf("prep the nodes\n");
 }
 
-static void	print_stacks(t_stack **a, char *stack)
-{
-		t_stack *temp;
+//static void	print_stacks(t_stack **a, char *stack)
+//{
+//		t_stack *temp;
 		
-		temp = *a;
+//		temp = *a;
 
-		printf("stack %s:", stack);
-		while ((temp != NULL))
-		{
-			printf(" %i ", temp->value);
-			temp = temp->next;
-		}
-		printf("\n");
-}
+//		printf("stack %s:", stack);
+//		while ((temp != NULL))
+//		{
+//			printf(" %i ", temp->value);
+//			temp = temp->next;
+//		}
+//		printf("\n");
+//}
 
 void	sort_stacks(t_stack **a, t_stack **b)
 {
 	int len_a;
 
 	len_a = stack_len(*a);
-	print_stacks(a, "A");
-	print_stacks(b, "B");
+	//print_stacks(a, "A");
+	//print_stacks(b, "B");
 	if (len_a-- > 3 && !stack_sorted(*a))
 	{
 		pb(a, b, false);
-		print_stacks(a, "A");
-		print_stacks(b, "B");
+		//print_stacks(a, "A");
+		//print_stacks(b, "B");
 	}
 	if (len_a-- > 3 && !stack_sorted(*a))
 	{
 		pb(a, b, false);
-		print_stacks(a, "A");
-		print_stacks(b, "B");
+		//print_stacks(a, "A");
+		//print_stacks(b, "B");
 	}
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		prep_nodes_a(*a, *b);
 		move_a_to_b(a, b);
-		print_stacks(a, "A");
-		print_stacks(b, "B");
+		//print_stacks(a, "A");
+		//print_stacks(b, "B");
 	}
 	three_sort(a);
 	while (*b)
 	{
 		prep_nodes_b(*a, *b);
 		move_b_to_a(a, b);
-		print_stacks(a, "A");
-		print_stacks(b, "B");
+		//print_stacks(a, "A");
+		//print_stacks(b, "B");
 	}
 	current_index(*a);
 	//printf("top node %i\n", (*a)->value);

@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/03/01 18:44:47 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/02 20:17:40 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ static long	ft_atol(const char *s)
 			sign *= -1;
 		s++;
 	}
-	if (ft_isdigit(*s) == 0)
+	while (*s)
 	{
+		if (ft_isdigit(*s) == 1)
+			result = result * 10 + (*s++ - '0');
+		else
+		{
 		ft_putendl_fd("not a digit, bruh!", 1);
 		exit (1);
+		}
 	}
-	while (ft_isdigit(*s) == 1)
-		result = result * 10 + (*s++ - '0');
 	return (result * sign);
 }
 
@@ -122,20 +125,20 @@ void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
 	}
 }
 // printf debugger
-static void	print_stacks(t_stack **a, char *stack)
-{
-		t_stack *temp;
+//static void	print_stacks(t_stack **a, char *stack)
+//{
+//		t_stack *temp;
 		
-		temp = *a;
+//		temp = *a;
 
-		printf("stack %s:", stack);
-		while ((temp != NULL))
-		{
-			printf(" %i ", temp->value);
-			temp = temp->next;
-		}
-		printf("\n");
-}
+//		printf("stack %s:", stack);
+//		while ((temp != NULL))
+//		{
+//			printf(" %i ", temp->value);
+//			temp = temp->next;
+//		}
+//		printf("\n");
+//}
 
 #include "stdio.h"
 int	main(int argc, char **argv)
@@ -165,7 +168,7 @@ int	main(int argc, char **argv)
 	}
 	if (stack_sorted(a) == 1)
 	{
-		print_stacks(&a, "A");
+		//print_stacks(&a, "A");
 		free_all(&a, &b);
 		//printf("it worked!");
 	}
