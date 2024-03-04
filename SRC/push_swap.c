@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/03/02 20:17:40 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/04 17:30:51 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,10 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	if (argc < 2 || !argv[1][0])
-	{	
 		error_msg_params("nothing to sort", &a);
-		return (1);
-	}
 	init_stack_a(&a, argv, argc);
+	if (a == NULL)
+		error_msg_params("empty stack", &a);
 	//print_stacks(&a, "A");
 	//sa(&a, false);
 	//print_stacks(&a, "A");
