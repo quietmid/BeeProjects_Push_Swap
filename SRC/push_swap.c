@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/03/04 17:30:51 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/06 19:13:59 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ static long	ft_atol(const char *s)
 	sign = 1;
 	while (*s <= 32)
 		s++;
-	if (*s == '-' || *s == '+')
+	if (*s == '-')
 	{
-		if (*s == '-')
-			sign *= -1;
+		sign *= -1;
 		s++;
 	}
 	while (*s)
@@ -33,8 +32,8 @@ static long	ft_atol(const char *s)
 			result = result * 10 + (*s++ - '0');
 		else
 		{
-		ft_putendl_fd("not a digit, bruh!", 1);
-		exit (1);
+			ft_putendl_fd("not a digit, bruh!", 1);
+			exit (1);
 		}
 	}
 	return (result * sign);
@@ -87,6 +86,8 @@ void	init_stack_a(t_stack **a, char **argv, int ac)
 		stack_node(a, (int)(n));
 		i++;
 	}
+	if (ac == 2)
+		free_array(argv);
 }
 
 t_stack	*get_cheapest(t_stack *stack)

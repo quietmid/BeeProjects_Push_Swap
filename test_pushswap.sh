@@ -19,6 +19,8 @@ printf ${BLUE}"\n-------------------------------------------------------------\n
 printf ${YELLOW}"Push Swap Tester "${DEF_COLOR};
 printf ${BLUE}"\n-------------------------------------------------------------\n"${DEF_COLOR};
 
+rm -rf 0
+
 # --------------------------------- Control Error ----------------------------------- #
 
 FILE=$PWD/push_swap
@@ -202,7 +204,7 @@ if [ $N -lt 4 ]; then
 else
 	printf "${RED}1.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -218,7 +220,7 @@ if [ $N -lt 4 ]; then
 else
 	printf "${RED}2.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -234,7 +236,7 @@ if [ $N -lt 4 ]; then
 else
 	printf "${RED}3.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -251,7 +253,7 @@ if [ $N -lt 4 ]; then
 else
 	printf "${RED}1.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -267,7 +269,7 @@ if [ $N -lt 4 ]; then
 else
 	printf "${RED}2.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -283,7 +285,7 @@ if [ $N -lt 4 ]; then
 else
 	printf "${RED}3.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -302,7 +304,7 @@ if [ $N -lt 13 ]; then
 else
 	printf "${RED}1.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -318,7 +320,7 @@ if [ $N -lt 13 ]; then
 else
 	printf "${RED}2.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -334,7 +336,7 @@ if [ $N -lt 13 ]; then
 else
 	printf "${RED}3.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -350,7 +352,7 @@ if [ $N -lt 13 ]; then
 else
 	printf "${RED}4.[KO]${DEF_COLOR}";
 	printf "${WHITE} TEST: ";
-	echo -n "$ARG "
+	echo -n "$ARG"
 fi
 S=$(./push_swap $ARG | ./checker_Mac $ARG)
 if [ $S == "OK" ]; then
@@ -386,7 +388,7 @@ res_5=0
 res_err=0
 control=1
 val=25
-if [ $1 > 0 ]; then
+if [ "$1" > 0 ]; then
 	val=$1
 fi
 ((val++))
@@ -403,24 +405,24 @@ else
 	control=3
 fi
 N=$(./push_swap $ARG | wc -l)
-if [ $N -lt 701 ] && [ $control -eq 2 ]; then
+if [ $N -lt 700 ] && [ $control -eq 2 ]; then
 	printf "${GREEN}[OK][5/5]${DEF_COLOR}";
 	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
 	((res_1++))
-elif [ $N -gt 700 ] && [ $N -lt 901 ] && [ $control -eq 2 ]; then
+elif [ $N -gt 700 ] && [ $N -lt 900 ] && [ $control -eq 2 ]; then
 	printf "${YELLOW}[OK][4/5]${DEF_COLOR}";
 	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
 	((res_2++))
-elif [$N -gt 900] && [ $N -lt 1101 ] && [ $control -eq 2]; then
+elif [$N -gt 900] && [ $N -lt 1100 ] && [ $control -eq 2]; then
 	printf "${RED}[KO][3/5]${DEF_COLOR}";
 	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
 	((res_3++))
-elif [ $N -gt 1100 ]  && [ $N -lt 1301 ] && [ $control -eq 2 ]; then
+elif [ $N -gt 1100 ]  && [ $N -lt 1300 ] && [ $control -eq 2 ]; then
 	printf "${RED}[KO][2/5]${DEF_COLOR}";
 	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
 
 	((res_4++))
-elif [ $N -gt 1300 ] || [ $N -eq 1300 ] && [ $control -eq 2 ]; then
+elif [ $N -gt 1300 ] || [ $N -eq 1300 ] || [ $N -lt 1500 ]&& [ $control -eq 2 ]; then
 	printf "${RED}[KO][1/5]${DEF_COLOR}";
 	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
 	((res_5++))
@@ -451,9 +453,82 @@ fi
 if [ $res_err != 0 ]; then
 printf	"${WHITE}\nTest ${DEF_COLOR}${RED}[NO SORTED] ${WHITE}$res_err/$val\n"
 fi
-if [ $res_1  != $val ]; then
-	printf "${CYAN}\nCheck traces $PWD/traces.txt\n"
+##FIVE HUNDRED
+printf ${BLUE}"\n500 inputs\n"${DEF_COLOR};
+
+res_1=0
+res_2=0
+res_3=0
+res_4=0
+res_5=0
+res_err=0
+control=1
+val=25
+if [ "$1" > 0 ]; then
+	val=$1
 fi
-#FIVE HUNDRED
-#printf ${BLUE}"500 inputs\n"${DEF_COLOR};
+((val++))
+cont=1
+while [ $cont -lt $val ]
+do
+ARG=$(ruby -e "puts (-250..249).to_a.shuffle.join(' ')");
+S=$(./push_swap $ARG | ./checker_Mac $ARG)
+if [ $S == "OK" ]; then
+	printf "${GREEN}$cont.[OK]${DEF_COLOR}";
+	control=2
+else 
+	printf "${RED}$cont.[KO]${DEF_COLOR}";
+	control=3
+fi
+N=$(./push_swap $ARG | wc -l)
+if [ $N -lt 5500 ] && [ $control -eq 2 ]; then
+	printf "${GREEN}[OK][5/5]${DEF_COLOR}";
+	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
+	((res_1++))
+elif [ $N -gt 5500 ] && [ $N -lt 7000 ] && [ $control -eq 2 ]; then
+	printf "${YELLOW}[OK][4/5]${DEF_COLOR}";
+	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
+	((res_2++))
+elif [$N -gt 7000] && [ $N -lt 8500 ] && [ $control -eq 2]; then
+	printf "${RED}[KO][3/5]${DEF_COLOR}";
+	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
+	((res_3++))
+elif [ $N -gt 8500 ]  && [ $N -lt 10000 ] && [ $control -eq 2 ]; then
+	printf "${RED}[KO][2/5]${DEF_COLOR}";
+	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
+
+	((res_4++))
+elif [ $N -gt 10000 ] || [ $N -lt 11500 ] && [ $control -eq 2 ]; then
+	printf "${RED}[KO][1/5]${DEF_COLOR}";
+	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
+	((res_5++))
+elif [ $control -eq 3 ]; then
+	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
+	((res_err++))
+fi
+((cont++))
+done
+
+((val--))
+printf	"${WHITE}\n\nTest ${DEF_COLOR}${GREEN}[5/5] ${WHITE}$res_1/$val"
+if [ $res_1 == $val ]; then
+	printf "${GREEN} Congrats , all tests with 500 inputs have been completed successfully 🥳✅"
+fi
+if [ $res_2 != 0 ]; then
+printf	"${WHITE}\nTest ${DEF_COLOR}${YELLOW}[4/5] ${WHITE}$res_2/$val"
+fi
+if [ $res_3 != 0 ]; then
+printf	"${WHITE}\nTest ${DEF_COLOR}${RED}[3/5] ${WHITE}$res_3/$val"
+fi
+if [ $res_4 != 0 ]; then
+printf	"${WHITE}\nTest ${DEF_COLOR}${RED}[2/5] ${WHITE}$res_4/$val"
+fi
+if [ $res_5 != 0 ]; then
+printf	"${WHITE}\nTest ${DEF_COLOR}${RED}[1/5] ${WHITE}$res_5/$val\n"
+fi
+if [ $res_err != 0 ]; then
+printf	"${WHITE}\nTest ${DEF_COLOR}${RED}[NO SORTED] ${WHITE}$res_err/$val\n"
+fi
+
+rm -rf 0
 fi

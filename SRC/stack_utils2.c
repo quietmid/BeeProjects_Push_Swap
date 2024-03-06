@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 13:37:34 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/29 18:07:25 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/06 15:02:28 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,17 @@ void	set_cheapest(t_stack *stack)
 		stack = stack->next;
 	}
 	cheap_node->cheapest = true;
+}
+
+void	free_array(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
 }
