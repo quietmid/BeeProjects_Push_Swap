@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 16:49:46 by jlu               #+#    #+#             */
-/*   Updated: 2024/03/06 15:02:58 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/07 15:56:08 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@ void	free_all(t_stack **a, t_stack **b)
 	free_stack(a);
 	free_stack(b);
 }
-
+// changed the output location 2 for standard error
 void	error_msg_params(char *msg, t_stack **a)
 {
 	free_stack(a);
-	ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n", 2); 
 	ft_putendl_fd(msg, 1);
 	exit (1);
 }
 
 void	error_msg_params2(char *msg)
 {
-	ft_putstr_fd("Error\n", 1);
+	ft_putstr_fd("Error\n", 2);
 	ft_putendl_fd(msg, 1);
 	exit (1);
 }

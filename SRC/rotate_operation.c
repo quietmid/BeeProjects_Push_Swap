@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:04:49 by jlu               #+#    #+#             */
-/*   Updated: 2024/02/22 13:18:30 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/07 15:55:37 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ rr (ra + rb)
 
 void	rotate(t_stack **stack)
 {
-	t_stack *last_node;
+	t_stack	*last_node;
 
-	if(!*stack || !(*stack)->next)
+	if (!*stack || !(*stack)->next)
 		return ;
 	last_node = find_last(*stack);
 	last_node->next = *stack;

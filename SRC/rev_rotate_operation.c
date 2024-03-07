@@ -6,7 +6,7 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 17:07:26 by jlu               #+#    #+#             */
-/*   Updated: 2024/03/01 14:50:36 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/07 15:58:22 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@ rrr (rra + rrb)
 */
 void	rev_rotate(t_stack **stack)
 {
-	t_stack *last_node;
-	
-	if(!*stack || !(*stack)->next)
+	t_stack	*last_node;
+
+	if (!*stack || !(*stack)->next)
 		return ;
 	last_node = find_last(*stack);
 	last_node->prev->next = NULL;
-	last_node->next = NULL;
 	last_node->next = *stack;
 	last_node->prev = NULL;
 	*stack = last_node;

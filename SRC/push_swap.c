@@ -6,12 +6,13 @@
 /*   By: jlu <jlu@student.hive.fi>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:39:08 by jlu               #+#    #+#             */
-/*   Updated: 2024/03/06 19:13:59 by jlu              ###   ########.fr       */
+/*   Updated: 2024/03/07 15:56:50 by jlu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// modified to checkt for single symbols like just - or +
 static long	ft_atol(const char *s)
 {
 	long	result;
@@ -26,15 +27,14 @@ static long	ft_atol(const char *s)
 		sign *= -1;
 		s++;
 	}
+	if (*s == '\0' && *s-- == '-')
+		error_msg_params2("not a digit, bruh!");
 	while (*s)
 	{
 		if (ft_isdigit(*s) == 1)
 			result = result * 10 + (*s++ - '0');
 		else
-		{
-			ft_putendl_fd("not a digit, bruh!", 1);
-			exit (1);
-		}
+			error_msg_params2("not a digit, bruh!");
 	}
 	return (result * sign);
 }
