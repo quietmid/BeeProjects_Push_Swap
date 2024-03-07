@@ -190,6 +190,15 @@ else
 	printf "${RED}15.[KO] ${DEF_COLOR}\n";
 fi
 
+ARG="-"
+printf "Argument: $ARG ${DEF_COLOR}\n"
+output=$(./push_swap $ARG | ./checker_Mac $ARG 2>&1)
+if [[ $output == "Error" ]]; then
+	printf "${GREEN}16.[OK] ${DEF_COLOR}\n";
+else
+	printf "${RED}16.[KO] ${DEF_COLOR}\n";
+fi
+
 #--------------------------------------------- Basic Input ------------------------------------ #
 
 printf ${BLUE}"\n--------------------------------------------------------------\n"${DEF_COLOR};
@@ -453,7 +462,7 @@ fi
 if [ $res_err != 0 ]; then
 printf	"${WHITE}\nTest ${DEF_COLOR}${RED}[NO SORTED] ${WHITE}$res_err/$val\n"
 fi
-##FIVE HUNDRED
+#FIVE HUNDRED
 printf ${BLUE}"\n500 inputs\n"${DEF_COLOR};
 
 res_1=0
@@ -530,5 +539,63 @@ if [ $res_err != 0 ]; then
 printf	"${WHITE}\nTest ${DEF_COLOR}${RED}[NO SORTED] ${WHITE}$res_err/$val\n"
 fi
 
+#Memory Leaks
+printf ${BLUE}"\nDifferent Inputs with Memory Leaks Check\n"${DEF_COLOR};
 rm -rf 0
+
+res_1=0
+res_2=0
+res_3=0
+res_4=0
+cont=1
+cont2=1
+cont3=1
+cont4=0
+while [ $cont2 -lt 175 ]
+do
+cont=1
+while [ $cont -lt 4 ]
+do
+ARG=$(ruby -e "puts (00..($cont2)).to_a.shuffle.join(' ')");
+N=$(./push_swap $ARG | wc -l)
+S=$(./push_swap $ARG | ./checker_Mac $ARG)
+if [ $S == "OK" ]; then
+	printf "${GREEN}$cont3 .[OK]${DEF_COLOR}";
+	((cont2++))
+	printf	"${MAGENTA} Num args: $cont2 ${DEF_COLOR}"
+	((cont2--))
+	printf "${CYAN} Moves:$N${DEF_COLOR}\n";
+	((res_1++))
+else
+	printf "${RED}$cont3 .[KO]${DEF_COLOR}\n";
+	echo TEST $cont ARG:"$ARG" >> traces.txt
+	((res_2++))
+fi
+if [ $cont -eq 3 ]; then
+
+R=$(leaks -atExit -- ./push_swap $ARG > /dev/null && echo $?)
+((cont4++))
+if [[ $R == 0 ]]; then
+  printf "${GREEN}$cont3 [MEMORY OK] ${DEF_COLOR}\n";
+  ((res_3++))
+else
+  printf "${RED}$cont3 [KO LEAKS] ${DEF_COLOR}\n";
+  echo TEST LEAKS $cont ARG:"$ARG" >> traces.txt
+  ((res_4++))
+fi
+fi
+((cont++))
+((cont3++))
+done
+((cont2 += 12))
+done
+
+((cont3--))
+
+if [ $res_1 == $cont3 ]; then
+	printf "${GREEN}\nCongrats , all tests have been completed successfully 🥳✅\n"
+fi
+
+rm -rf 0
+
 fi
